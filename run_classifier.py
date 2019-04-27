@@ -316,6 +316,7 @@ class RqeProcessor(DataProcessor):
 
   def get_train_examples(self, data_dir):
     """See base class."""
+    print('in train')
     return self._create_examples(
         self._read_txt(os.path.join(data_dir, "rqe_train.txt")), "train")
 
