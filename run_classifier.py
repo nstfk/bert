@@ -202,7 +202,16 @@ class DataProcessor(object):
       for line in reader:
         lines.append(line)
       return lines
-  
+
+  def _read_txt(cls, input_file, quotechar=None):
+    """Reads a tab separated value file."""
+    lines = []
+    with tf.gfile.Open(input_file, "r") as f:
+      for line in f:
+             text = line.strip().split('\t')
+             lines.append(text)
+      return lines
+
   def _read_csv(cls, input_file, quotechar=None):
     """Reads a tab separated value file."""
     with tf.gfile.Open(input_file, "r") as f:
@@ -211,9 +220,6 @@ class DataProcessor(object):
       for line in reader:
         lines.append(line)
       return lines
-
-    
-
 
 class XnliProcessor(DataProcessor):
   """Processor for the XNLI data set."""
@@ -303,6 +309,7 @@ class MnliProcessor(DataProcessor):
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
 
+
 class RqeProcessor(DataProcessor):
   """Processor for the RQE data set """
 
@@ -323,7 +330,7 @@ class RqeProcessor(DataProcessor):
 
   def get_labels(self):
     """See base class."""
-    return ["FALSE", "TRUE"]
+    return ["false", "true"]
 
   def _create_examples(self, lines, set_type):
     """Creates examples for the training and dev sets."""
@@ -332,13 +339,13 @@ class RqeProcessor(DataProcessor):
     for (i, line) in enumerate(lines):
       if i == 0:
         continue
-      guid = "%s-%s" % (set_type, i)
-      text_a = tokenization.convert_to_unicode(line[3])
-      text_b = tokenization.convert_to_unicode(line[4])
+      guid = tokenization.convert_to_unicode(line[0])
+      text_a = tokenization.convert_to_unicode(line[2])
+      text_b = tokenization.convert_to_unicode(line[3])
       if set_type == "test":
         label = "FLASE"
       else:
-        label = tokenization.convert_to_unicode(line[0])
+        label = tokenization.convert_to_unicode(line[1])
       examples.append(
           InputExample(guid=guid, text_a=text_a, text_b=text_b, label=label))
     return examples
