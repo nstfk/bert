@@ -316,17 +316,17 @@ class RqeProcessor(DataProcessor):
   def get_train_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_csv(os.path.join(data_dir, "rqe_train.csv")), "train")
+        self._read_txt(os.path.join(data_dir, "rqe_train.txt")), "train")
 
   def get_dev_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_csv(os.path.join(data_dir, "rqe_dev.csv")), "dev")
+        self._read_txt(os.path.join(data_dir, "rqe_dev.txt")), "dev")
 
   def get_test_examples(self, data_dir):
     """See base class."""
     return self._create_examples(
-        self._read_csv(os.path.join(data_dir, "rqe_test.csv")), "test")
+        self._read_txt(os.path.join(data_dir, "rqe_test.txt")), "test")
 
   def get_labels(self):
     """See base class."""
