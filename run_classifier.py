@@ -206,6 +206,7 @@ class DataProcessor(object):
   def _read_txt(cls, input_file, quotechar=None):
     """Reads a tab separated value file."""
     lines = []
+    print(input_file)
     with tf.gfile.Open(input_file, "r") as f:
       for line in f:
              text = line.strip().split('\t')
