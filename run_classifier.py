@@ -339,8 +339,10 @@ class RqeProcessor(DataProcessor):
     
     examples = []
     for (i, line) in enumerate(lines):
+      
       if i == 0:
         continue
+      print(i)
       guid = tokenization.convert_to_unicode(line[0])
       text_a = tokenization.convert_to_unicode(line[2])
       text_b = tokenization.convert_to_unicode(line[3])
