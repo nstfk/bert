@@ -347,7 +347,7 @@ class RqeProcessor(DataProcessor):
       text_a = tokenization.convert_to_unicode(line[2])
       text_b = tokenization.convert_to_unicode(line[3])
       if set_type == "test":
-        label = "FLASE"
+        label = "false"
       else:
         label = tokenization.convert_to_unicode(line[1])
       examples.append(
